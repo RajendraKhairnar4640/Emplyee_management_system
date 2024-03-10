@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Today's Attendance List{% endblock title %}
+
+{% block content %}
+<!--**********************************
+        Content body start
+    ***********************************-->
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row page-titles mx-0">
+                <div class="col-sm-6 p-md-0">
+                    <div class="welcome-text">
+                        <h4>Hi, Today's Attendance List..!</h4>
+                        <span class="ml-1">You can view today's attendance and update here</span>
+                    </div>
+                </div>
+            </div>
+            <!-- row -->
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Today's Attendance</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Employee</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Present</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for attendance in today_attendance %}
+                                            <tr>
+                                                <td>{{ attendance.id }}</td>
+                                                <td>{{ attendance.employee.name }}</td>
+                                                <td>{{ attendance.date }}</td>
+                                                <td>
+                                                    {% if attendance.is_present is None %}
+                                                        -
+                                                    {% elif attendance.is_present %}
+                                                        Present
+                                                    {% else %}
+                                                        Absent
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    <a href="{% url 'update_today_attendance' pk=attendance.id %}">
+                                                        <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--**********************************
+        Content body end
+    ***********************************-->
+{% endblock content %}

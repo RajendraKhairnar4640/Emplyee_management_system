@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Update Today's Attendance{% endblock title %}
+
+{% block content %}
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row page-titles mx-0">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4>Update Today's Attendance for {{ form.instance.employee.name }}</h4>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <h4 class="card-title">Attendance Form</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {{ form.non_field_errors }}
+                                    <input type="hidden" name="date" value="{{ form.instance.date }}">
+                                    <input type="hidden" name="employee" value="{{ form.instance.employee.id }}">
+                                    <div class="form-group">
+                                        <label for="id_is_present">Attendance</label>
+                                        <select name="is_present" id="id_is_present" class="form-control">
+                                            <option value=true {% if form.instance.is_present %}selected{% endif %}>Present</option>
+                                            <option value=false {% if not form.instance.is_present %}selected{% endif %}>Absent</option>
+                                        </select>
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Update Attendance</button>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

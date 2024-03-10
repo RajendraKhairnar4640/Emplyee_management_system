@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Attendance List{% endblock title %}
+
+{% block content %}
+<!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h4>Hi, All Attendance List..!</h4>
+                            <span class="ml-1" style="color:red;">Note..!You can't update attendance. contact to admin</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- row -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">All Employee Attandance List</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Empoyee</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Present</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for attendance in all_attendance %}
+                                          <tr>
+                                            <th scope="row">{{ attendance.id }}</th>
+                                            <td>{{ attendance.employee }}</td>
+                                            <td>{{ attendance.date }}</td>
+                                            <td>{% if attendance.is_present is None %}
+                                                -
+                                            {% elif attendance.is_present %}
+                                                Present
+                                            {% else %}
+                                                Absent
+                                            {% endif %}</td>
+                                          </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                      </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+{% endblock content %}

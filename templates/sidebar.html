@@ -1,0 +1,27 @@
+<div class="quixnav">
+    <div class="quixnav-scroll">
+        <ul class="metismenu" id="menu">
+            <li class="nav-label first">Main Menu</li>
+            <li><a href="{% url "dashboard" %}"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
+            </li> 
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                        class="icon icon-single-04"></i><span class="nav-text">Employee</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url "add_employee" %}">Add Employee</a></li>
+                    <li><a href="{% url "employee_list" %}">Employee List</a></li>
+                </ul>
+            </li>
+
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                class="icon icon-single-04"></i><span class="nav-text">Attendance</span></a>
+        <ul aria-expanded="false">
+            <li><a href="{% url "all_attendance" %}">All Attendance</a></li>
+            <li><a href="{% url "today_attendance" %}">Today's Attendance</a></li>
+        </ul>
+    </li>
+
+    </div>
+</div>
+<!--**********************************
+    Sidebar end
+***********************************-->
